@@ -2,18 +2,22 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  *
- * @format
- * @flow
+ *
+ *
  */
 
 import React from 'react';
 import {
+  Alert,
   SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
   Text,
   StatusBar,
+  Button,
+  DatePickerIOS,
+  ProgressViewIOS,
 } from 'react-native';
 
 import {
@@ -24,48 +28,25 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const App: () => React$Node = () => {
+const App = () => {
+  const [time, setTime] = React.useState(new Date());
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>DooDooButter.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                !!!Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <View>
+            <Button
+              onPress={() => Alert.alert('CLICKED')}
+              title="Login"
+              color="#333333"
+            />
           </View>
+          <DatePickerIOS initialDate={time} onDateChange={(newDate) => setTime(newDate)} />
+          <ProgressViewIOS progress={0.5} />
+          <Text>
+            {time.toString()}
+          </Text>
         </ScrollView>
       </SafeAreaView>
     </>
@@ -73,41 +54,10 @@ const App: () => React$Node = () => {
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
+  login: {
+    borderColor: 'black',
+    borderWidth: 10,
+    borderStyle: 'solid',
   },
 });
 
